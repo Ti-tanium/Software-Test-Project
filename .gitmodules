@@ -1,0 +1,3 @@
+[submodule "msr4flakiness"]
+	path = msr4flakiness
+	url = https://github.com/damorimRG/msr4flakiness.git
