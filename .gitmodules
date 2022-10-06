@@ -1,3 +1,6 @@
 [submodule "msr4flakiness"]
 	path = msr4flakiness
 	url = https://github.com/damorimRG/msr4flakiness.git
+[submodule "FlakeFlagger"]
+	path = FlakeFlagger
+	url = git@github.com:Ti-tanium/FlakeFlagger.git
