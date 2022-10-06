@@ -171,6 +171,8 @@ def generate_processed_data_for_flakiness_prediction(result_dir,flaky_test_list)
     
     # add the flakiness status to for each test_name
     processed_data_with_libraries_usages.insert(4, 'flaky', test_name_col)
+    print('flaky test list',flaky_test_list)
+    print('test name', processed_data_with_libraries_usages['test_name'][0])
     processed_data_with_libraries_usages['flaky'] = np.where(processed_data_with_libraries_usages['test_name'].isin(flaky_test_list), 1, 0) 
     
     # in case of duplication
@@ -181,6 +183,9 @@ def generate_processed_data_for_flakiness_prediction(result_dir,flaky_test_list)
 execution_time = time.time()
 
 if __name__ == '__main__':
+    csv_file_name = sys.argv[2]
+    test_methods = sys.argv[3]
+    test_classes = sys.argv[4]
         
     # directory of projects that we collect flakgeflagger features. 
     clone_project = sys.argv[1]
@@ -193,7 +198,9 @@ if __name__ == '__main__':
     collect_flakeFlagger_files(clone_project,ouptut)
     
     # start generating the processed_data file. 
-    flaky_test_list = pd.read_csv(sys.argv[2])[sys.argv[3]].unique()
+    csv_file = pd.read_csv(csv_file_name)
+    flaky_test_list = csv_file[test_classes] + '.' + csv_file[test_methods]
+    flaky_test_list = flaky_test_list.unique()
     generate_processed_data_for_flakiness_prediction(ouptut,flaky_test_list)
     
     print("The process of generating processed_data.csv is completed in : (%s) seconds. " % round((time.time() - execution_time), 3))

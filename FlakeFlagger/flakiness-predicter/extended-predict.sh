@@ -3,7 +3,7 @@
 # original FlakeFlagger dataset is "result/processed_data.csv"
 training_data="result/processed_data.csv"
 
-testing_data="result/your-testing-dataset.csv"
+testing_data="result/your_processed_data.csv"
 
 output_dir="extended_FlakeFlagger_result/FlakeFlagger-prediction-on-your-dataset"
 
@@ -11,7 +11,7 @@ output_dir="extended_FlakeFlagger_result/FlakeFlagger-prediction-on-your-dataset
 
 # boolean arguments
 cross_validation=True
-IG_flag=True # True if you want to re-calculate the IG for FlakeFlagger features (in case you train on another dataset). 
+IG_flag=False # True if you want to re-calculate the IG for FlakeFlagger features (in case you train on another dataset). 
 train_model=True
 min_IG_flag=True
 

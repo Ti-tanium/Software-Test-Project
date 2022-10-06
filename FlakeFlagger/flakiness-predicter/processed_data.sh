@@ -3,6 +3,7 @@
 
 projects_dir="../../test-projects/"
 source_of_flaky_tests="../../test-projects/historical_rerun_flaky_tests.csv"
-column_name="Test_method"
+class_col="Test_class"
+test_method_col="Test_method"
 
-python generate_processed_data.py $projects_dir $source_of_flaky_tests $column_name
+python generate_processed_data.py $projects_dir $source_of_flaky_tests $test_method_col $class_col

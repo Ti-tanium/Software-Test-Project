@@ -1,4 +1,4 @@
-﻿Project,sha,Test class,Test_method
+﻿Project,sha,Test_class,Test_method
 achilles,2a82e0a011197906a8471be487da8b24ffaa39d9,info.archinnov.achilles.it.TestEntityWithStaticAnnotations,should_find_using_static_consistency
 achilles,3ef293744f913c1aa8cf59d2fdd78f46a5e2f79f,info.archinnov.achilles.it.TestALLEntityAsChild,should_delete_by_id
 achilles,3ef293744f913c1aa8cf59d2fdd78f46a5e2f79f,info.archinnov.achilles.it.TestALLEntityAsChild,should_dsl_delete
