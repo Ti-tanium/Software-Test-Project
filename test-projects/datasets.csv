@@ -1,0 +1,20 @@
+Project Name,Project Address, SHA
+Achilles,git@github.com:doanduyhai/Achilles.git,e3099bdce342910951c4862c78751fd81ed4552e
+ambari,git@github.com:apache/ambari.git
+assertj-core,git@github.com:joel-costigliola/assertj-core.git
+checkstyle,git@github.com:checkstyle/checkstyle.git
+commons-exec,git@github.com:apache/commons-exec.git
+dropwizard,git@github.com:dropwizard/dropwizard.git,07dfaed697427e208d65049f80a5d1949833b7cd
+hadoop,git@github.com:apache/hadoop.git,cc2babc1f75c93bf89a8f10da525f944c15d02ea
+hbase,git@github.com:apache/hbase.git,801fc05e9c082ab12c7c1207087d3667ab162d1a
+httpcore,git@github.com:apache/httpcore.git
+jackrabbit-oak,git@github.com:apache/jackrabbit-oak.git,11985b3fbbd4f7f39dfaf368b01b5e0c67a32f0d
+jimfs,git@github.com:google/jimfs.git,ced6093fe69a31e37ba8bbf63858b50c7164f4a4
+logback,git@github.com:qos-ch/logback.git
+orbit,git@github.com:orbit/orbit.git,c4904af2f3745fea93871493edd7e09348e77768
+oryx,git@github.com:OryxProject/oryx.git,72ae4bb3cc49d92b77e76d8a30fca8b6549b8865
+spring-boot,git@github.com:spring-projects/spring-boot.git,daa3d457b71896a758995c264977bdd1414ee4d4
+alluxio,git@github.com:Alluxio/alluxio.git
+togglz,git@github.com:togglz/togglz.git
+undertow,git@github.com:undertow-io/undertow.git,d0efffad5d2034bb07525cac9b299dac72c3045d
+wro4j,git@github.com:wro4j/wro4j.git,185ab607f1d649ca38b4a772831ee754cd4649fb
