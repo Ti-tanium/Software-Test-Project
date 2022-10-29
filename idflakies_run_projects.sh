@@ -24,7 +24,7 @@ do
         echo "$ModuleName finshed"
         if find .dtfixingtools/detection-results -mindepth 1 -maxdepth 1 | read; then
             mkdir -p $rt/../results/$Module_Name
-            cp .dtfixingtools $rt/../results/$Module_Name
+            cp -r .dtfixingtools $rt/../results/$Module_Name
             echo "Detect sucess"
         fi
         cd $rt
