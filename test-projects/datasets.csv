@@ -2,7 +2,6 @@ Project Name,Project Address,SHA
 Achilles,git@github.com:doanduyhai/Achilles.git,e3099bdce342910951c4862c78751fd81ed4552e
 ambari,git@github.com:apache/ambari.git
 assertj-core,git@github.com:joel-costigliola/assertj-core.git
-checkstyle,git@github.com:checkstyle/checkstyle.git
 commons-exec,git@github.com:apache/commons-exec.git
 dropwizard,git@github.com:dropwizard/dropwizard.git,07dfaed697427e208d65049f80a5d1949833b7cd
 hadoop,git@github.com:apache/hadoop.git,cc2babc1f75c93bf89a8f10da525f944c15d02ea
