@@ -1301,3 +1301,9 @@ main:
 INFO: No timeout specified. Using randomize.rounds: 10
 INFO: ROUNDS_CALCULATED: Giving org.apache.hadoop:hadoop-auth:3.3.0-SNAPSHOT 10 rounds to run for random-class-method
 INFO: Locating tests...
+INFO: Located 125 tests. Time taken: 1.0889999866485596 seconds
+INFO: Using original order in path: /misc/scratch/xlswtest/projects/hadoop/hadoop-common-project/hadoop-auth/.dtfixingtools/original-order
+INFO: Using original order in path: /misc/scratch/xlswtest/projects/hadoop/hadoop-common-project/hadoop-auth/.dtfixingtools/original-order
+INFO: Using original order in path: /misc/scratch/xlswtest/projects/hadoop/hadoop-common-project/hadoop-auth/.dtfixingtools/original-order
+[INFO] Getting original results (125 tests).
+INFO: Created dependent test detector (class edu.illinois.cs.dt.tools.detection.detectors.RandomDetector).
