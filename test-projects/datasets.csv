@@ -1,4 +1,4 @@
-Project Name,Project Address, SHA
+Project Name,Project Address,SHA
 Achilles,git@github.com:doanduyhai/Achilles.git,e3099bdce342910951c4862c78751fd81ed4552e
 ambari,git@github.com:apache/ambari.git
 assertj-core,git@github.com:joel-costigliola/assertj-core.git
