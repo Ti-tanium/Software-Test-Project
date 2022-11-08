@@ -1,9 +1,19 @@
 #! /bin/bash
-cd /misc/scratch/st_flaky_xx/
-while IFS="," read -r name git_address
+
+# directory to put all the projects
+PROJECT_DIR=./     
+
+WORK_DIR=$(pwd)
+cd $PROJECT_DIR
+while IFS="," read -r name sha git_address
 do
   echo "Git cloning $name"
   git clone $git_address
-done < <(tail -n +2 /home/ecelrc/staff/xli6/Software-Test-Project/test-projects/historical_projects.csv)
+  
+  echo "Git checkout to $sha"
+  cd $name
+  git checkout $sha
+  cd ..
+done < <(tail -n +2 $WORK_DIR/projects.csv)
 
 echo "Done!"

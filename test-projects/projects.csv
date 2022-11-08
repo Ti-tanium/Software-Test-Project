@@ -1,0 +1,23 @@
+name,sha,Project Address
+achilles,2a82e0a011197906a8471be487da8b24ffaa39d9,git@github.com:doanduyhai/Achilles.git
+ambari,016bff80edffd176e425eb4dc919d68039d1e5e3,git@github.com:apache/ambari.git
+assertj-core,aa90c2d3a757b67f6bd64ca82f9b9f15b1e1161c,git@github.com:joel-costigliola/assertj-core.git
+cloudera.oryx,54cc78b4ef8381fd13aaaebec71d10b81a465ecb,git@github.com:cloudera/oryx.git
+commons-exec,0d8882e434a8f11ceefc6f4a697164c14fa04a09,git@github.com:apache/commons-exec.git
+dropwizard,01124252c3c86241eebf16f3a3d8989a2bc24e0f,git@github.com:dropwizard/dropwizard.git
+hadoop,029d86e1aaab2d1039b4cc94ba10c27bf28cd01f,git@github.com:apache/hadoop.git
+hbase,0491cb140a7563f7c4d51eb2aa43d1376f6ea2f3,git@github.com:apache/hbase.git
+hector,08a7004ed341de1ca150267d88972cadf7e17b7e,git@github.com:hector-client/hector.git
+httpcore,3a836a2d779e29495c1348c900aae91572b44d2a,git@github.com:apache/httpcore.git
+jackrabbit-oak,1af0f7ab20a86b03e1409d515e55e1e435bfef21,git@github.com:apache/jackrabbit-oak.git
+jimfs,000b15db7abe764d97430e00fde29c28452be96d,git@github.com:google/jimfs.git
+logback,147ed05b09fc60430d87aa1da984d7a24092aa6a,git@github.com:qos-ch/logback.git
+ninja,00532264cae2d912aa595596aa52d27761328255,git@github.com:ninjaframework/ninja.git
+okhttp,027618dfdc25f28018286864ddf0eee5950d1c41,git@github.com:square/okhttp.git
+oozie,0492ce4f059641a286b6a258bf6f8f37d32ae94c,git@github.com:apache/oozie.git
+orbit,0028c5318b6acbc2ccaf1544b2a53a9006eb99f1,git@github.com:orbit/orbit.git
+oryx,14b531eb34d4714e7249dfd2998e83ac90815d89,git@github.com:OryxProject/oryx.git
+spring-boot,1a3b0309b3c9d506f8ca2bdc646c7728af06ffcb,git@github.com:spring-projects/spring-boot.git
+togglz,14dcc2af9fd17a34a0cc09260a57cd4ec3e08c77,git@github.com:togglz/togglz.git
+wro4j,08ba7e56a7159513e71af88fa58319143765dcde,git@github.com:wro4j/wro4j.git
+zxing,024a3539390ab2b2ab2db4beb4e6cb8f0efcc279,git@github.com:zxing/zxing.git
