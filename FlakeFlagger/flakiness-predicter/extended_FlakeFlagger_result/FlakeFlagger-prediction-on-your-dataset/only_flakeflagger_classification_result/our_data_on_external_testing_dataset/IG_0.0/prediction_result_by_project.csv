@@ -1,2 +1,13 @@
 cross_validation,balance_type,fold_size,IG_min,numTrees(RF_only),classifier,features_structure,project,TP,FN,FP,TN,Precision,Recall,F1
-external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,Achilles,4,2,166,431,2%,67%,5%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,Achilles,4,2,187,410,2%,67%,4%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,alluxio,0,0,759,4495,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,commons-exec,0,0,1,95,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,hadoop,0,0,10,121,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,hbase,0,0,34,319,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,hector,0,1,21,296,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,jackrabbit-oak,1,3,229,6126,0%,25%,1%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,jimfs,0,0,71,5759,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,oozie,0,0,389,442,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,orbit,0,0,41,150,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,undertow,0,0,38,182,0%,0%,0%
+external_test_data,SMOTE,1,0.0,100,RF,Flake-Flagger-Features,wro4j,1,6,154,683,1%,14%,1%
