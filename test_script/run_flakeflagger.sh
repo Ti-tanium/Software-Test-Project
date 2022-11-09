@@ -4,6 +4,7 @@ VERIFY=1 # set to 1 if needs to collect features from projects
 JAVA_VER=$(java -version 2>&1 | sed -n ';s/.* version "\(.*\)\.\(.*\)\..*".*/\1\2/p;')
 USER_DIR=~
 WORK_DIR=$(pwd)
+LOCAL_MVN_REPO=/misc/scratch/st_flaky_xx/.m2
 
 if [ "$JAVA_VER" -eq 18 ] 
 then
@@ -52,29 +53,23 @@ fi
 
 # generate features for all projects
 PROJECT_DIR=/misc/scratch/st_flaky_xx/projects/
-junit4_projects="Achilles ambari assertj-core checkstyle commons-exec dropwizard hadoop hbase httpcore jackrabbit-oak jimfs"
-projects="Achilles hadoop hbase jackrabbit-oak dropwizard jimfs orbit oryx spring-boot undertow wro4j"
+projects="zxing"
 if [ $VERIFY -eq 1 ]; then
-  for project in $projects; do
-      if [ $project = "Achilles" ] || [ $project = "alluxio" ]; then
-        echo "$project skiped"
-        continue
-      fi
+  while IFS="," read -r project sha git_address; do
       cd "$PROJECT_DIR/$project"
-      echo "###################################"
       echo "Processing $project"
+      echo "#### Clean up ####"
       $mvn clean
+      $mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
+      echo "#### START VERIFY ####"
       start=`date +%s`
       $mvn -Drat.skip=true verify
       end=`date +%s`
       runtime=$((end-start))
+
       echo "$project,$runtime" >> $WORK_DIR/results/flakeflagger_verify_runtime.csv
       echo "$project verify time: $runtime"
       cd ..
-  done
+  done < <(tail -n +2 $WORK_DIR/../test-projects/projects.csv)
 fi
-
-# clean up
-# rm ${USER_DIR}/bin/apache-maven-3.5.4/lib/ext/test-smells-maven-extension-1.0-SNAPSHOT.jar
-
 
