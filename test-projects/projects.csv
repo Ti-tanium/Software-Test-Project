@@ -1,5 +1,5 @@
 project,sha,Project Address
-achilles,3ef293744f913c1aa8cf59d2fdd78f46a5e2f79f,git@github.com:doanduyhai/Achilles.git
+Achilles,3ef293744f913c1aa8cf59d2fdd78f46a5e2f79f,git@github.com:doanduyhai/Achilles.git
 ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git
 assertj-core,aa90c2d3a757b67f6bd64ca82f9b9f15b1e1161c,git@github.com:joel-costigliola/assertj-core.git
 cloudera.oryx,54cc78b4ef8381fd13aaaebec71d10b81a465ecb,git@github.com:cloudera/oryx.git
