@@ -369,8 +369,8 @@ for i in project_name:
     print('testing on project: ', i)
     project_Name=i
     
-    train_dataset=  df.loc[(df['project'] != i)]
-    test_dataset= df.loc[(df['project']== i)]
+    train_dataset=  df.loc[(df['project'] != i)].dropna()
+    test_dataset= df.loc[(df['project']== i)].dropna()
 
     train_x, valid_x, train_y, valid_y = train_test_split(train_dataset[x], train_dataset[y], 
                                                           random_state=49, 
