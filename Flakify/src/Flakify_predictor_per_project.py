@@ -227,6 +227,7 @@ def train():
         preds = model(sent_id, mask)
 
         # compute the loss between actual and predicted values
+        labels = labels.long()
         loss = cross_entropy(preds, labels)
 
         # add on to the total loss
@@ -409,7 +410,7 @@ for i in project_name:
     train_dataloader, val_dataloader = data_loaders(train_seq, train_mask, train_y, val_seq, val_mask, val_y)
 
      # compute the class weights
-    class_weights = compute_class_weight('balanced', np.unique(Y_train.values), y=np.ravel(Y_train.values))
+    class_weights = compute_class_weight(class_weight='balanced', classes=np.unique(Y_train.values), y=np.ravel(Y_train.values))
     # converting list of class weights to a tensor
     weights = torch.tensor(class_weights, dtype=torch.float)
 
