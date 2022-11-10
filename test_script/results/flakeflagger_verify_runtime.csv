@@ -1,1 +1,22 @@
-project,runtime
+project,runtime,build_status,desc
+Achilles,1045,1
+ambari,138,0
+assertj-core,3642,0,can build but no smell
+commons-exec,120,1
+dropwizard,27,0
+hadoop,1,0
+hbase,3841,0
+hector,95,1
+httpcore,4,0,
+jackrabbit-oak,14,0
+jimfs,4,0
+logback,4,0
+ninja,200,1
+okhttp,1,1,not maven
+oozie,3,0
+orbit,40,1
+oryx,2,0
+spring-boot,2,0
+togglz,75,0
+wro4j,507,1
+zxing,258,0

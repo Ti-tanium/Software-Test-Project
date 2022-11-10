@@ -53,9 +53,12 @@ fi
 
 # generate features for all projects
 PROJECT_DIR=/misc/scratch/st_flaky_xx/projects/
-projects="zxing"
+
 if [ $VERIFY -eq 1 ]; then
-  while IFS="," read -r project sha git_address; do
+  while IFS="," read -r project runtime build_status _; do
+      if [ $build_status -eq 1 ]; then
+        continue
+      fi
       cd "$PROJECT_DIR/$project"
       echo "Processing $project"
       echo "#### Clean up ####"
@@ -63,13 +66,13 @@ if [ $VERIFY -eq 1 ]; then
       $mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
       echo "#### START VERIFY ####"
       start=`date +%s`
-      $mvn -Drat.skip=true verify
+      $mvn -Drat.skip=true -Dmaven.javadoc.skip=true verify -fae
       end=`date +%s`
       runtime=$((end-start))
 
-      echo "$project,$runtime" >> $WORK_DIR/results/flakeflagger_verify_runtime.csv
+      # echo "$project,$runtime" >> $WORK_DIR/results/flakeflagger_verify_runtime.csv
       echo "$project verify time: $runtime"
       cd ..
-  done < <(tail -n +2 $WORK_DIR/../test-projects/projects.csv)
+  done < <(tail -n +2 $WORK_DIR/../test_script/results/flakeflagger_verify_runtime.csv)
 fi
 

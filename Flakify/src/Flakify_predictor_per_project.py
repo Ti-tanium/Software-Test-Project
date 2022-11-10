@@ -23,7 +23,7 @@ def set_deterministic(seed):
     torch.backends.cudnn.deterministic = True 
 
 # specify GPU
-device = torch.device("cuda")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 #reading the parameters 
 
