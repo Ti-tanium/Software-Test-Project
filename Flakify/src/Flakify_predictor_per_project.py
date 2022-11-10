@@ -23,7 +23,7 @@ def set_deterministic(seed):
     torch.backends.cudnn.deterministic = True 
 
 # specify GPU
-device = torch.device("cuda")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 #reading the parameters 
 
@@ -227,6 +227,7 @@ def train():
         preds = model(sent_id, mask)
 
         # compute the loss between actual and predicted values
+        labels = labels.long()
         loss = cross_entropy(preds, labels)
 
         # add on to the total loss
@@ -369,8 +370,8 @@ for i in project_name:
     print('testing on project: ', i)
     project_Name=i
     
-    train_dataset=  df.loc[(df['project'] != i)]
-    test_dataset= df.loc[(df['project']== i)]
+    train_dataset=  df.loc[(df['project'] != i)].dropna()
+    test_dataset= df.loc[(df['project']== i)].dropna()
 
     train_x, valid_x, train_y, valid_y = train_test_split(train_dataset[x], train_dataset[y], 
                                                           random_state=49, 
@@ -409,7 +410,7 @@ for i in project_name:
     train_dataloader, val_dataloader = data_loaders(train_seq, train_mask, train_y, val_seq, val_mask, val_y)
 
      # compute the class weights
-    class_weights = compute_class_weight('balanced', np.unique(Y_train.values), y=np.ravel(Y_train.values))
+    class_weights = compute_class_weight(class_weight='balanced', classes=np.unique(Y_train.values), y=np.ravel(Y_train.values))
     # converting list of class weights to a tensor
     weights = torch.tensor(class_weights, dtype=torch.float)
 

@@ -3,7 +3,7 @@ FLAKIFY_DIR=$WORK_DIR/../Flakify
 
 MODEL_WEIGHTS=FlakeFlagger
 
-dataset_file="${FLAKIFY_DIR}/FlakeFlagger/Flakify_FlakeFlagger_dataset.csv" 
+dataset_file="${FLAKIFY_DIR}/dataset/FlakeFlagger/Flakify_FlakeFlagger_dataset.csv" 
 model_weights="${FLAKIFY_DIR}/results/Flakify_per_project_model_weights_on_${MODEL_WEIGHTS}_dataset.pt"
 results_file="${WORK_DIR}/results/Flakify_cross_validation_results.csv"
 
