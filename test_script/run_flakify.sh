@@ -3,10 +3,10 @@ FLAKIFY_DIR=$WORK_DIR/../Flakify
 MODEL_WEIGHTS=FlakeFlagger
 
 # install python packages
-pip3 install -r $FLAKIFY_DIR/requirements.txt
+# pip3 install -r $FLAKIFY_DIR/requirements.txt
 
 echo "----------- Python packages install completed! ---------------"
-dataset_file="${FLAKIFY_DIR}/dataset/FlakeFlagger/Flakify_FlakeFlagger_dataset.csv" 
+dataset_file="${WORK_DIR}/../test-projects/flakify_data.csv" 
 model_weights="${FLAKIFY_DIR}/results/Flakify_per_project_model_weights_on_${MODEL_WEIGHTS}_dataset.pt"
 results_file="${WORK_DIR}/results/Flakify_cross_validation_results.csv"
 
