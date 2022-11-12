@@ -2,6 +2,9 @@ WORK_DIR=$(pwd)
 FLAKIFY_DIR=$WORK_DIR/../Flakify
 MODEL_WEIGHTS=FlakeFlagger
 
+# change pip cache dir
+XDG_CACHE_HOME=/misc/scratch/st_flaky_xx/.cache
+
 # install python packages
 source flakify/bin/activate
 python3 -m pip install -r $FLAKIFY_DIR/requirements.txt
