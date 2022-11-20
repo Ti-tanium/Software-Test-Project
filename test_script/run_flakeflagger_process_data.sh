@@ -6,4 +6,5 @@ source_of_flaky_tests="../test-projects/flaky_tests.csv"
 class_col="Test_class"
 test_method_col="Test_method"
 
-python3 $FLAKEFLAGGER_DIR/generate_processed_data.py $projects_dir $source_of_flaky_tests $test_method_col $class_col
+# python3 $FLAKEFLAGGER_DIR/generate_processed_data.py $projects_dir $source_of_flaky_tests $test_method_col $class_col
+bash $FLAKEFLAGGER_DIR/extended-predict.sh

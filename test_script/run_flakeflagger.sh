@@ -1,8 +1,9 @@
 VERIFY=1 # set to 1 if needs to collect features from projects
+BUILD_SMELL_DETECTOR=0 # build smell detector once.
 
 # check java version
 JAVA_VER=$(java -version 2>&1 | sed -n ';s/.* version "\(.*\)\.\(.*\)\..*".*/\1\2/p;')
-USER_DIR=~
+USER_DIR=/misc/scratch/st_flaky_xx/
 WORK_DIR=$(pwd)
 LOCAL_MVN_REPO=/misc/scratch/st_flaky_xx/.m2
 
@@ -18,32 +19,31 @@ fi
 if [ ! -d "${USER_DIR}/bin/apache-maven-3.5.4" ]; then
   echo "Installing maven on user directory..."
   if [ ! -d "${USER_DIR}/bin/" ]; then
-    mkdir ~/bin
+    mkdir ${USER_DIR}/bin
   fi
 
   # download mvn
   wget https://dlcdn.apache.org/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-  tar -xvf apache-maven-3.5.4-bin.tar.gz -C ~/bin
+  tar -xvf apache-maven-3.5.4-bin.tar.gz -C ${USER_DIR}/bin
   rm apache-maven-3.5.4-bin.tar.gz
 else
   echo "Maven installed."
 fi
 
-# build feature collector
-if [ ! -f "${USER_DIR}/bin/apache-maven-3.5.4/lib/ext/test-smells-maven-extension-1.0-SNAPSHOT.jar" ]; then
-  cd ../FlakeFlagger/test-feature-collector
-  if [ ! -f "./maven-extension/target/test-smells-maven-extension-1.0-SNAPSHOT.jar" ]; then
-    mvn install
-  fi
-  cp -v ./maven-extension/target/test-smells-maven-extension-1.0-SNAPSHOT.jar ${USER_DIR}/bin/apache-maven-3.5.4/lib/ext/
-fi
-echo "Environment setup complete."
-
 # use local mvn
-mvn=(~/bin/apache-maven-3.5.4/bin/mvn)
+mvn=(${USER_DIR}/bin/apache-maven-3.5.4/bin/mvn)
 echo "--------mvn version-----------"
 $mvn -v
 echo "------------------------------"
+
+# build feature collector
+if [ $BUILD_SMELL_DETECTOR -eq 1 ]; then
+  echo "Building Test smell detector"
+  cd ../FlakeFlagger/test-feature-collector
+  $mvn install
+  cp -v ./maven-extension/target/test-smells-maven-extension-1.0-SNAPSHOT.jar ${USER_DIR}/bin/apache-maven-3.5.4/lib/ext/
+  echo "Environment setup complete."
+fi
 
 cd $WORK_DIR
 if [ ! -f $WORK_DIR/results/flakeflagger_verify_runtime.csv ]; then
@@ -53,7 +53,7 @@ fi
 
 # generate features for all projects
 PROJECT_DIR=/misc/scratch/st_flaky_xx/projects/
-
+echo "Start Running Project"
 if [ $VERIFY -eq 1 ]; then
   while IFS="," read -r project runtime build_status _; do
       if [ $build_status -eq 1 ]; then
@@ -62,7 +62,7 @@ if [ $VERIFY -eq 1 ]; then
       cd "$PROJECT_DIR/$project"
       echo "Processing $project"
       echo "#### Clean up ####"
-      $mvn clean
+      # $mvn clean
       $mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
       echo "#### START VERIFY ####"
       start=`date +%s`
@@ -76,3 +76,4 @@ if [ $VERIFY -eq 1 ]; then
   done < <(tail -n +2 $WORK_DIR/../test_script/results/flakeflagger_verify_runtime.csv)
 fi
 
+# /misc/scratch/st_flaky_xx/bin/apache-maven-3.5.4/bin/mvn -Drat.skip=true -Dmaven.javadoc.skip=true verify -fae
