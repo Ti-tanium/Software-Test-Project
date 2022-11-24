@@ -1,22 +1,23 @@
 project,runtime,build_status
-Achilles,1045,1
-ambari,138,0
+jackrabbit-oak,14,0
+httpcore,4,0,
+hbase,3841,0
+dropwizard,27,0
 assertj-core,3774,1
 commons-exec,120,1
-dropwizard,27,0
-hadoop,1,0
-hbase,3841,0
 hector,95,1
-httpcore,4,0,
-jackrabbit-oak,14,0
 jimfs,88,1
 logback,444,1
 ninja,200,1
-okhttp,1,-1, not a maven project
-oozie,3,0
 orbit,178,1
-oryx,2,0
-spring-boot,2,0
-togglz,75,-1,smell detector: null pointer error
+oryx,2453,1
 wro4j,507,1
 zxing,455,1
+Achilles,1045,1
+hadoop,1,-1, need to install protobuf
+ambari,138,-1,ambari agent failed
+okhttp,1,-1, not a maven project
+oozie,3,-1,cannot resolve dependencies.
+spring-boot,1,-1,need manual debugging
+togglz,75,-1,smell detector: null pointer error
+

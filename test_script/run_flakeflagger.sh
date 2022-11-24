@@ -56,13 +56,13 @@ PROJECT_DIR=/misc/scratch/st_flaky_xx/projects/
 echo "Start Running Project"
 if [ $VERIFY -eq 1 ]; then
   while IFS="," read -r project runtime build_status _; do
-      if [ $build_status -eq 1 ]; then
+      if [ ! $build_status -eq 0 ]; then
         continue
       fi
       cd "$PROJECT_DIR/$project"
       echo "Processing $project"
       echo "#### Clean up ####"
-      # $mvn clean
+      $mvn clean
       $mvn dependency:purge-local-repository -DactTransitively=false -DreResolve=false
       echo "#### START VERIFY ####"
       start=`date +%s`
