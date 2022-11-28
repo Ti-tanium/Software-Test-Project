@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 import sys
 import gc
 import pandas as pd
@@ -22,24 +23,6 @@ def set_deterministic(seed):
     torch.cuda.manual_seed_all(seed)           
     torch.backends.cudnn.deterministic = True 
 
-# specify GPU
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-#reading the parameters 
-
-dataset_path = sys.argv[1]
-model_weights_path = sys.argv[2]
-results_file = sys.argv[3]
-
-df = pd.read_csv(dataset_path)
-input_data = df['final_code'] # use the 'full_code' column to run Flakify using the full code instead of pre-processed code
-target_data = df['flaky']
-df.head()
-
-# get project names
-
-project_name=df['project'].unique()
-
 # balance dataset
 def sampling(X_train, y_train, X_valid, y_valid):
     
@@ -58,16 +41,6 @@ def sampling(X_train, y_train, X_valid, y_valid):
     y_val = pd.Series(y_val.ravel())
 
     return x_train, y_train, x_val, y_val
-
-
-# defining CodeBERT model
-model_name = "microsoft/codebert-base"
-model_config = AutoConfig.from_pretrained(model_name, return_dict=False, output_hidden_states=True)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-auto_model = AutoModel.from_pretrained(model_name, config=model_config)
-
-
-
 
 # converting code into tokens and then vector representation
 def tokenize_data(train_text, val_text, test_text):
@@ -91,10 +64,6 @@ def tokenize_data(train_text, val_text, test_text):
         truncation=True)
     return tokens_train, tokens_val, tokens_test
 
-
-
-
-
 # converting vector representation to tensors
 def text_to_tensors(tokens_train, tokens_val, tokens_test):
     train_seq = torch.tensor(tokens_train['input_ids'])
@@ -108,22 +77,11 @@ def text_to_tensors(tokens_train, tokens_val, tokens_test):
 
     return train_seq, train_mask, val_seq, val_mask, test_seq, test_mask
 
-
-
-
-
 # setting seed for data_loaders for output reproducibility
 def seed_worker(worker_id):
     worker_seed = torch.initial_seed() % 2**32
     numpy.random.seed(worker_seed)
     random.seed(worker_seed)
-
-
-g = torch.Generator()
-seed = 42 # any number 
-set_deterministic(seed)
-
-
 
 def data_loaders(train_seq, train_mask, train_y, val_seq, val_mask, val_y):
     # define a batch size
@@ -149,8 +107,6 @@ def data_loaders(train_seq, train_mask, train_y, val_seq, val_mask, val_y):
     val_dataloader = DataLoader(val_data, sampler=val_sampler, batch_size=batch_size, worker_init_fn=seed_worker)
 
     return train_dataloader, val_dataloader
-
-
 
 # setting up the neural network for CodeBERT fine-tuning
 class BERT_Arch(nn.Module):
@@ -195,8 +151,6 @@ class BERT_Arch(nn.Module):
         final_output = self.softmax(fc2_output)
 
         return final_output
-
-
 
 # training the model
 def train():
@@ -257,13 +211,9 @@ def train():
     # returns the loss and predictions
     return avg_loss, total_preds
 
-
-
 def format_time(time=None, format=None, rebase=True):
     """See :meth:`I18n.format_time`."""
     return get_i18n().format_time(time, format, rebase)
-
-
 
 # evaluating the model
 def evaluate():
@@ -319,10 +269,6 @@ def evaluate():
 
     return avg_loss, total_preds
 
-
-
-
-
 def get_evaluation_scores(tn, fp, fn, tp):
     print("get_score method is defined")
     if(tp == 0):
@@ -336,8 +282,6 @@ def get_evaluation_scores(tn, fp, fn, tp):
         Recall = tp/(tp+fn)
         F1 = 2*((Precision*Recall)/(Precision+Recall))
     return accuracy, F1, Precision, Recall
-
-
 
 # give test data to the model in chunks to avoid Cuda out of memory error
 def give_test_data_in_chunks(x_test):
@@ -356,12 +300,36 @@ def give_test_data_in_chunks(x_test):
 
     return preds
 
+# specify GPU
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+#reading the parameters 
+dataset_path = sys.argv[1]
+model_weights_path = sys.argv[2]
+results_file = sys.argv[3]
+
+df = pd.read_csv(dataset_path)
+input_data = df['final_code'] # use the 'full_code' column to run Flakify using the full code instead of pre-processed code
+target_data = df['flaky']
+print('Input Data Shape: ', df.shape)
+print('Target data info:', target_data.value_counts())
+# get project names
+project_name=df['project'].unique()
+print('Projects:', project_name)
+
+# defining CodeBERT model
+model_name = "microsoft/codebert-base"
+model_config = AutoConfig.from_pretrained(model_name, return_dict=False, output_hidden_states=True)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+auto_model = AutoModel.from_pretrained(model_name, config=model_config)
+
+g = torch.Generator()
+seed = 42 # any number 
+set_deterministic(seed)
 
 #performing per project analysis
-
 result = pd.DataFrame(columns = ['project_name','Accuracy','F1', 'Precision', 'Recall', 'TN', 'FP', 'FN', 'TP'])
-execution_time_full = time.time()
-print("Start time of  complete experiment", execution_time_full)
+print("Start time of  complete experiment", datetime.now())
 TN = FP = FN = TP = 0
 x='final_code'
 y='flaky'
@@ -484,7 +452,6 @@ for i in project_name:
     print('accuracy, F1, Precision, Recall',accuracy, F1, Precision, Recall)
 
     result = result.append(pd.Series([project_Name,accuracy, F1, Precision, Recall, TN, FP, FN, TP], index=result.columns), ignore_index=True)
-
-result.to_csv(results_file,  index=False)
+    result.to_csv(results_file,  index=False)
 
 
