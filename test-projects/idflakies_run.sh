@@ -33,6 +33,10 @@ do
         fi
         cd $rt/$name
         echo "cd `$rt/$name`"
-    done   
+    done
+    mvn clean   
     cd ..
+    echo "------$name finished, deleting project"
+    rm -rf $name
+    echo "-------$name deleted"
 done < <(tail -n +2 projects.csv)
