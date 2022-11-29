@@ -5,7 +5,7 @@ cd ../FlakeFlagger/flakiness-predicter/
 
 training_data="result/processed_data.csv"
 testing_data="${WORK_DIR}/result/your_processed_data.csv"
-output_dir="${WORK_DIR}/results/FlakeFlagger_prediction"
+output_dir="${WORK_DIR}/results/flakeflagger/"
 
 # boolean arguments
 cross_validation=True
