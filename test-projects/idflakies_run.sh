@@ -1,6 +1,7 @@
 #! /bin/bash
 mkdir ../../projects
 rt=$PWD/../../projects
+echo "project,sha,url,subproject,flaky_test" > $rt/../idflakies_runtime.csv; \
 while IFS=, read -r name SHA URL
 do
     echo "Git cloning $name and $URL"
@@ -20,7 +21,13 @@ do
         cd `dirname $item`
         echo "cd `dirname $item`"
         mvn install -Dmaven.test.skip
-        mvn idflakies:detect -Ddetector.detector_type=random-class-method -Ddt.randomize.rounds=10 -Ddt.detector.original_order.all_must_pass=false
+
+        start=`date +%s`
+        mvn idflakies:detect -Ddetector.detector_type=random-class-method -Ddt.randomize.rounds=50 -Ddt.detector.original_order.all_must_pass=false
+        end=`date +%s`
+        runtime=$((end-start))
+        echo "$name,$SHA,$URL,$Module_Name,$runtime" >> $rt/../idflakies_runtime.csv;
+        
         echo "$name -- $Module_Name finshed"
         if find .dtfixingtools -mindepth 1 -maxdepth 1 | read; then
             mkdir -p $rt/../results/$name/$Module_Name
