@@ -1,4 +1,4 @@
-project,sha,url,subproject,flaky_test
+project,sha,url,subproject,runtime
 commons-exec,59a147cb8d6ae25c19bd3ade20f8920e92c264ce,git@github.com:apache/commons-exec.git,.,4558
 jackrabbit-oak,a567971d5a1ea2787cf949d87c75c9b2b297d93b,git@github.com:apache/jackrabbit-oak.git,oak-api,44
 jackrabbit-oak,a567971d5a1ea2787cf949d87c75c9b2b297d93b,git@github.com:apache/jackrabbit-oak.git,oak-auth-external,6
@@ -195,4 +195,5 @@ ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git
 ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git,ambari-project,12
 ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git,contrib/ambari-log4j,7
 ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git,docs,10
+ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git,ambari-server,97354
 ambari,400a37ab0b6636a5476461e731f43c085a5b8cfc,git@github.com:apache/ambari.git,.,10
